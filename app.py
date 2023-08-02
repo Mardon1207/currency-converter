@@ -24,7 +24,14 @@ def to_usd():
                 "convertedCurrency": "USD"
             }
     """
-    pass
+    data=request.values
+    db={
+        "amount": data["amount"],
+        "currency": "USZ",
+        "converted": round(int(data["amount"])/11390.7,4),
+        "convertedCurrency": "UZS"
+    }
+    return db
 
 @app.route('/api/to-uzs', methods=['GET'])
 def to_uzs():
@@ -46,8 +53,14 @@ def to_uzs():
                 "convertedCurrency": "UZS"
             }
     """
-    pass
-    
+    data=request.values
+    db={
+        "amount": data["amount"],
+        "currency": "USD",
+        "converted": int(data["amount"])*11390.7,
+        "convertedCurrency": "UZS"
+    }
+    return db
 
 if __name__ == '__main__':
     app.run()    
